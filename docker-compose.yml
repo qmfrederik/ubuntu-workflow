@@ -1,0 +1,10 @@
+version: "2.2"
+services:
+  apt-cacher-ng:
+    image: sameersbn/apt-cacher-ng:3.3-20200524
+    restart: unless-stopped
+    init: true
+    ports:
+    - "3142:3142"
+    volumes:
+    - /vagrant/deploy/state/apt-cacher-ng:/var/cache/apt-cacher-ng
