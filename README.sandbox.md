@@ -49,8 +49,8 @@ docker login docker.pkg.github.com
 
 for image in disk-wipe disk-partition install-root-fs cloud-init
 do
-    docker pull docker.pkg.github.com/qmfrederik/ubuntu-workflow/$image:410149153
-    docker tag docker.pkg.github.com/qmfrederik/ubuntu-workflow/$image:410149153 192.168.1.1/ubuntu-workflow/$image:latest
+    docker pull docker.pkg.github.com/qmfrederik/ubuntu-workflow/$image:410297842
+    docker tag docker.pkg.github.com/qmfrederik/ubuntu-workflow/$image:410297842 192.168.1.1/ubuntu-workflow/$image:latest
     docker push 192.168.1.1/ubuntu-workflow/$image:latest
 done
 ```
@@ -70,14 +70,14 @@ If you haven't created a hardware profile yet, create one now:
 cat /vagrant/hardware-data.json | docker exec -i deploy_tink-cli_1 tink hardware push
 ```
 
-## Create a template which wipes and partitions the disk
+## Create a template which wipes and partitions the disk, and then installs Ubuntu
 
 ```
-cat wipe-and-partition.tmpl | docker exec -i deploy_tink-cli_1 tink template create -n wipe_and_partition_disk
+cat wipe-and-install-os.tmpl | docker exec -i deploy_tink-cli_1 tink template create -n wipe_and_install_os
 ```
 
 Then, create a workflow which applies the template:
 
 ```
-docker exec -i deploy_tink-cli_1 tink workflow create -t 65e8ac1d-3997-11eb-9c7d-0242ac120004 -r '{"device_1":"08:00:27:00:00:01"}'
+docker exec -i deploy_tink-cli_1 tink workflow create -t 7e31aaf8-39ff-11eb-90fe-0242ac120004 -r '{"device_1":"08:00:27:00:00:01"}'
 ```
