@@ -16,5 +16,6 @@ packages=(
 	python3-urllib3
 	wget
 	yq
+	docker.io
 )
 echo "${packages[@]}"

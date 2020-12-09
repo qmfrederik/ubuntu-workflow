@@ -23,6 +23,7 @@ jobs:
           docker build -t $registry/$GITHUB_REPOSITORY/disk-partition:$GITHUB_RUN_ID 02-disk-partition/ --build-arg REGISTRY=$registry --build-arg IMAGE=$base
           docker build -t $registry/$GITHUB_REPOSITORY/install-root-fs:$GITHUB_RUN_ID 03-install-root-fs/ --build-arg REGISTRY=$registry --build-arg IMAGE=$base
           docker build -t $registry/$GITHUB_REPOSITORY/cloud-init:$GITHUB_RUN_ID 04-cloud-init/ --build-arg REGISTRY=$registry --build-arg IMAGE=$base
+          docker build -t $registry/$GITHUB_REPOSITORY/reboot:$GITHUB_RUN_ID 05-reboot/ --build-arg REGISTRY=$registry --build-arg IMAGE=$base
         working-directory: ubuntu
 
       - name: Publish Docker images
@@ -33,3 +34,4 @@ jobs:
           docker push $registry/$GITHUB_REPOSITORY/disk-partition:$GITHUB_RUN_ID
           docker push $registry/$GITHUB_REPOSITORY/install-root-fs:$GITHUB_RUN_ID
           docker push $registry/$GITHUB_REPOSITORY/cloud-init:$GITHUB_RUN_ID
+          docker push $registry/$GITHUB_REPOSITORY/reboot:$GITHUB_RUN_ID

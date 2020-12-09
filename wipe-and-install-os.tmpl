@@ -16,13 +16,20 @@ tasks:
         image: ubuntu-workflow/disk-partition:latest
         timeout: 90
         environment:
-          MIRROR_HOST: 192.168.1.2
+          MIRROR_HOST: ${TINKERBELL_HOST_IP}
         volumes:
           - /statedir:/statedir
       - name: "install-root-fs"
         image: ubuntu-workflow/install-root-fs:latest
         timeout: 1500
         environment:
-          PROXY_HOST: 192.168.1.2
+          PROXY_HOST: ${TINKERBELL_HOST_IP}
         volumes:
           - /statedir:/statedir
+      - name: "reboot"
+        image: reboot
+        timeout: 120
+        environment:
+          REGISTRY: ${TINKERBELL_HOST_IP}
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
