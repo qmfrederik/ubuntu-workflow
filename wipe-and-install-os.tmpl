@@ -1,8 +1,8 @@
 version: "0.1"
-name: wipe_and_partition_disk
+name: wipe_and_install_os
 global_timeout: 600
 tasks:
-  - name: "wipe and partition disk"
+  - name: "wipe and partition disk, and install os"
     worker: "{{.device_1}}"
     volumes:
       - /dev:/dev
